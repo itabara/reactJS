@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script> -->
+    <script src="https://fb.me/react-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <title>Hello ReactJS</title>
+  </head>
+  <body>
+    <div id="area1"></div>
+    <div id="area2"></div>
+    <script type="text/babel">
+
+        var HelloWorld = React.createClass({
+
+          propTypes:{
+            name: React.PropTypes.string,
+            isPerson: React.PropTypes.bool
+          },
+
+          // default property
+          getDefaultProps: function() {
+            return {
+              name: 'Iulian'
+            }
+          },
+
+          render: function() {
+            var greeting = "World";
+
+            // we render Person component only if isPerson
+            if (this.props.isPerson){
+              greeting = (
+                <Person name={this.props.name}></Person>
+              )
+            }
+
+            return (
+              <h1>Hello {greeting}</h1>
+            )
+          }
+        });
+
+        var Person = React.createClass({
+
+          propTypes:{
+            name: React.PropTypes.string.isRequired
+          },
+
+          // default property
+          getDefaultProps: function() {
+            return {
+              name: 'Iulian'
+            }
+          },
+
+          render: function() {
+            return (
+              <span>{this.props.name}</span >
+            )
+          }
+        });
+
+        ReactDOM.render(
+          <HelloWorld name="Emilian" isPerson={true} />,
+          document.getElementById('area1')
+        );
+
+        ReactDOM.render(
+          <HelloWorld name="Iulian" isPerson={false} />,
+          document.getElementById('area2')
+        );
+
+    </script>
+  </body>
+</html>
